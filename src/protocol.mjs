@@ -53,18 +53,10 @@ export class Protocol {
 }
 
 function isWorldNameValid(worldName) {
-	/* Validate world name, allowed chars are a..z, 0..9, '_' and '.'
-	final int size = nameBytes.capacity();
-	if (size < 3 || size - 2 > 24 || nameBytes.getShort(size - 2) != 1337) {
-		return false;
-	}
-	nameBytes.limit(size - 2);
-	for (int i = 0; i < nameBytes.limit(); i++) {
-		final byte b = nameBytes.get(i);
-		if (!((b > 96 && b < 123) || (b > 47 && b < 58) || b == 95 || b == 46)) {
-			return false;
-		}
-	}*/
-	// TODO: implement this
-	return true;
+	/* a-z 0-9 _ . */
+	var valid = new RegExp(/^([a-z0-9_\.])+$/g).test(worldName);
+	/* 24 should be equal or greater than world name
+	 * worldname should be greater than 0            */
+	if(valid && 24 >= worldName.length > 0) return true;
+	else return false;
 }
